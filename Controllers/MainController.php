@@ -39,4 +39,25 @@ class MainController extends Abstract\AbstractController
         ]);
     }
 
+    public function shortened(array $getParams) : void
+    {
+        global $systemMessage, $sessionRole;
+        $shortUrl = $getParams["url"];
+
+        echo $this->twig->render('public/public.shortened.html.twig', [
+            "systemMessage" => $systemMessage,
+            "sessionRole" => $sessionRole,
+            "csrfToken" => $this->csrfToken,
+            "shortUrl" => $shortUrl
+        ]);
+    }
+
+    public function gotoShort(array $getParams) : void
+    {
+        die(var_dump($getParams));
+        $shortUrl = $getParams["url"];
+        $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
+        die(var_dump($getLongUrl));
+    }
+
 }

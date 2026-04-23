@@ -19,6 +19,15 @@ class MainManager extends AbstractManager
 
     }
 
+    public function getLongUrl(string $shortUrl): ?string
+    {
+        $stmt = $this->db->prepare("SELECT * FROM shorts_main WHERE short_short = :shortUrl");
+        $stmt->execute(["shortUrl" => $shortUrl]);
+        $result = $stmt->fetch();
+        if(!$result) return null;
+        return $result["short_long"];
+    }
+
     private function makeItShorter(string $indexValue): string
     {
         $num = (intval($indexValue) + 1) * OBS_VALUE;
