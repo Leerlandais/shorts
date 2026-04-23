@@ -95,7 +95,9 @@ abstract class AbstractController
                 return $this->dateClean($cleanThis["value"]);
             case "url" :
                 if (!preg_match('#^https?://#i', $cleanThis["value"])) {
-                    throw new Exception('Only http/https allowed');
+                    $_SESSION["systemMessage"] = "URL must start with http:// or https://";
+                    header("Location: ./");
+                    exit();
                 }
                 return $this->urlClean($cleanThis["value"]);
         }

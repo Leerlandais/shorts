@@ -18,7 +18,17 @@ class MainController extends Abstract\AbstractController
 
     public function index() : void
     {
-        echo $this->twig->render('public/public.index.html.twig');
+        global $systemMessage, $sessionRole;
+
+        if(isset($_POST["unset:shortenUrl"])) {
+            $cleanedData = $this->preparePostData($_POST);
+            $shortUrl = $this->mainManager->shortenUrl($cleanedData);
+        }
+        echo $this->twig->render('public/public.index.html.twig', [
+            "systemMessage" => $systemMessage,
+            "sessionRole" => $sessionRole,
+            "csrfToken" => $this->csrfToken,
+        ]);
     }
 
 }
