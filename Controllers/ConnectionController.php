@@ -21,6 +21,7 @@ class ConnectionController extends Abstract\AbstractController
         parent::__construct($twig, $managerFactory);
         $this->connectionManager = $this->getManager(ConnectionManager::class);
     }
+
     public function logout()
     {
         $this->connectionManager->logoutUser();
@@ -28,8 +29,4 @@ class ConnectionController extends Abstract\AbstractController
         exit;
     }
 
-    public function index() : void
-    {
-        echo $this->twig->render('public/public.index.html.twig');
-    }
 }

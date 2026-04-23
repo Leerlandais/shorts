@@ -15,7 +15,7 @@ Trait TraitLaundryRoom {
     }
    protected function urlClean($cleanThisUrl): string
     {
-        return filter_var($cleanThisUrl, FILTER_SANITIZE_URL);
+        return filter_var($cleanThisUrl, FILTER_VALIDATE_URL);
     }
    protected function intClean($cleanThisInt): int
     {

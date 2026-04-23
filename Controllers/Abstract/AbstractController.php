@@ -2,6 +2,7 @@
 
 namespace Controllers\Abstract;
 
+use Exception;
 use Factory\ManagerFactory;
 use Twig\Environment;
 use model\Trait\TraitLaundryRoom;
@@ -92,6 +93,11 @@ abstract class AbstractController
                 return $this->simpleTrim($cleanThis["value"]);
             case "date":
                 return $this->dateClean($cleanThis["value"]);
+            case "url" :
+                if (!preg_match('#^https?://#i', $cleanThis["value"])) {
+                    throw new Exception('Only http/https allowed');
+                }
+                return $this->urlClean($cleanThis["value"]);
         }
 
         return $cleanThis["value"];
