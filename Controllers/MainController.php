@@ -57,6 +57,7 @@ class MainController extends Abstract\AbstractController
 
         $shortUrl = $getParams["url"];
         $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
+        die(var_dump($getLongUrl));
         header("Location: $getLongUrl");
         exit();
     }
