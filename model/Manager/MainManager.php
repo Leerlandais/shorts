@@ -8,22 +8,30 @@ class MainManager extends AbstractManager
 {
     public function shortenUrl(array $data) : ?string
     {
-        $longUrl = $data["short_long"];
-        if(empty($longUrl)) return null;
-        $newShortId = $this->insertAnything($data, "shorts_main","db", true);
-        die(var_dump($newShortId));
+
+        if(empty($data["short_long"])) return null;
+        $newId = $this->insertAnything($data, "shorts_main","db", true);
+        $shorty["short_short"] = $this->makeItShorter($newId);
+        $addShort = $this->updateAnything($shorty, "short_id", $newId, "shorts_main");
+        if(!$addShort || !$newId) return null;
+
+        return $shorty["short_short"];
+
     }
-/*
-    private function makeItShorter(string $longUrl) : string
+
+    private function makeItShorter(string $indexValue): string
     {
+        $num = (intval($indexValue) + 1) * OBS_VALUE;
         $alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $base = strlen($alphabet);
         $str = '';
+
         do {
             $str = $alphabet[$num % $base] . $str;
             $num = intdiv($num, $base);
         } while ($num > 0);
+
         return $str;
     }
-*/
+
 }

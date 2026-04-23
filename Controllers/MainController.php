@@ -23,11 +23,19 @@ class MainController extends Abstract\AbstractController
         if(isset($_POST["unset:shortenUrl"])) {
             $cleanedData = $this->preparePostData($_POST);
             $shortUrl = $this->mainManager->shortenUrl($cleanedData);
+            if(!$shortUrl) {
+                $_SESSION["systemMessage"] = "Something went wrong creating the short url!";
+                header("Location: ./");
+                exit();
+            }
+            header("Location: ?route=shortened&url=$shortUrl");
+            exit();
         }
         echo $this->twig->render('public/public.index.html.twig', [
             "systemMessage" => $systemMessage,
             "sessionRole" => $sessionRole,
             "csrfToken" => $this->csrfToken,
+            "shortUrl" => $shortUrl ?? null
         ]);
     }
 
