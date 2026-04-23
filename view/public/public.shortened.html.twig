@@ -13,8 +13,12 @@
             <h2 class="text-4xl text-gray-500 text-center my-6">
                 Here's your shortened URL
             </h2>
-        <h3><a href="?route=gotoShort&url={{ shortUrl }}">https://leerlandais.com/shorts/{{ shortUrl }}</a></h3>
+        <h3 id="shortUrl">https://leerlandais.com/shorts/{{ shortUrl }}</h3>
 
     </div>
+{% endblock %}
+{% block javascript %}
+{{ parent() }}
+<script src="{{ PUB_DIR }}scripts/copyHandler.js"></script>
 {% endblock %}
         
