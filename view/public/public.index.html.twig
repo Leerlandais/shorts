@@ -2,5 +2,19 @@
 {% block title %}
     {{ parent() }} | Home
 {% endblock %}
-{% block hero %}If you can see this, all is good{% endblock %}
+{% block dumpArea %}
+
+{% endblock %}
+{% block sectionOne %}
+    <div class="flex flex-col my-12 mx-auto w-full items-center">
+        <h1 class="text-5xl text-gray-600 mt-12">Welcome&excl;</h1>
+        <form method="post" class="w-full flex flex-col">
+            <input type="hidden" name="csrf:csrf_token" value="{{ csrfToken }}">
+        <h2 class="text-4xl text-gray-500 text-center my-6">Enter your URL</h2>
+            <label for="shortLongUrl" class="label_standard mx-auto"></label>
+            <input class="input_standard mx-auto w-[35%]" name="str:short_long" id="shortLongUrl">
+            <button type="submit" name="unset:shortenUrl" class="button_standard mx-auto w-fit mt-4">Shorten It</button>
+        </form>
+    </div>
+{% endblock %}
         

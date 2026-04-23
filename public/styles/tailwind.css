@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 /* Personalised TW Classes go here */
+
+.label_standard {
+    @apply text-sm font-bold text-gray-700 dark:text-gray-300 block;
+}
+
+.input_standard {
+    @apply block border border-gray-500 outline-gray-800 px-2 py-2 text-sm rounded-md my-2 bg-white dark:bg-gray-700 text-gray-900 dark:text-white;
+}
+
+.button_standard {
+    @apply px-4 py-1 bg-gray-400 hover:bg-gray-300 rounded-md text-black text-sm sm:text-lg shadow-md;
+}
