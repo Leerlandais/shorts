@@ -55,11 +55,21 @@ class MainController extends Abstract\AbstractController
     public function gotoShort(array $getParams) : void
     {
 
-        $shortUrl = $getParams["url"];
+        $shortUrl = $getParams["s"];
         $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
-        die(var_dump($getLongUrl));
+
         header("Location: $getLongUrl");
         exit();
+    }
+
+    public function verifyForShort(array $getParams) : void
+    {
+        die(var_dump($getParams));
+        $shortUrl = $getParams["url"];
+        $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
+        if(!$getLongUrl) {
+            header("Location: ./");
+        }
     }
 
 }

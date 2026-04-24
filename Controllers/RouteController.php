@@ -1,5 +1,7 @@
 <?php
+
 namespace Controllers;
+
 use    model\Manager\RouteManager;
 
 
@@ -13,9 +15,10 @@ $router->registerRoute('404', ErrorController::class, 'error404');
 $router->registerRoute('shortened', MainController::class, 'shortened');
 $router->registerRoute('gotoShort', MainController::class, 'gotoShort');
 
-
-
+if (isset($_GET["s"])) {
+    $_GET["route"] = "gotoShort";
+}
+    $route = $_GET['route'] ?? 'home';
 
 // Handle request
-$route = $_GET['route'] ?? 'home';
 $router->handleRequest($route);
