@@ -10,15 +10,18 @@
         <h1 class="text-5xl text-gray-600 mt-12">
             Welcome&excl;
         </h1>
-            <h2 class="text-4xl text-gray-500 text-center my-6">
-                Here's your shortened URL
-            </h2>
+        <h2 class="text-4xl text-gray-500 text-center my-6">
+            Here's your shortened URL <span class="text-2xl italic">&lpar;click on it to copy to clipboard&rpar;</span>
+        </h2>
+        {#
+        <h3 id="shortUrl">http://shorts/public/?s={{ shortUrl }}</h3>
+        #}
         <h3 id="shortUrl">https://leerlandais.com/shorts/public/?s={{ shortUrl }}</h3>
-
     </div>
 {% endblock %}
 {% block javascript %}
 {{ parent() }}
 <script src="{{ PUB_DIR }}scripts/copyHandler.js"></script>
+<script src="{{ PUB_DIR }}scripts/urlCopier.js"></script>
 {% endblock %}
         

@@ -54,11 +54,9 @@ class MainController extends Abstract\AbstractController
 
     public function gotoShort(array $getParams) : void
     {
-
         $shortUrl = $getParams["s"];
         $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
-
-        header("Location: $getLongUrl");
+        header("Location: $getLongUrl", true, 302);
         exit();
     }
 
