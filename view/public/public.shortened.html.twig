@@ -16,7 +16,11 @@
         {#
         <h3 id="shortUrl">http://shorts/public/?s={{ shortUrl }}</h3>
         #}
-        <h3 id="shortUrl">https://leerlandais.com/shorts/public/?s={{ shortUrl }}</h3>
+        <h3 id="shortUrl" class="relative cursor-pointer">https://leerlandais.com/shorts/public/?s={{ shortUrl }}</h3>
+        <span id="copiedMsg"
+              class="absolute left-1/2 -translate-x-1/2 -top-6 text-xs bg-gray-800 text-white px-2 py-1 rounded opacity-0 transition-opacity">
+        Copied!
+    </span>
     </div>
 {% endblock %}
 {% block javascript %}
