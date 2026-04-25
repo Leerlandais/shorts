@@ -28,6 +28,12 @@ class MainManager extends AbstractManager
         return $result["short_long"];
     }
 
+    public function incrementCounter(string $shortUrl) : void
+    {
+        $stmt = $this->db->prepare("UPDATE shorts_main SET short_usage = short_usage + 1 WHERE short_short = :shortUrl");
+        $stmt->execute(["shortUrl" => $shortUrl]);
+    }
+
     private function makeItShorter(string $indexValue): string
     {
         $num = (intval($indexValue) + 1) * OBS_VALUE;

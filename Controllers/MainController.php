@@ -4,6 +4,7 @@ namespace Controllers;
 
 use Controllers\Abstract\AbstractController;
 use Factory\ManagerFactory;
+use JetBrains\PhpStorm\NoReturn;
 use model\Manager\MainManager;
 use Twig\Environment;
 
@@ -52,22 +53,15 @@ class MainController extends Abstract\AbstractController
         ]);
     }
 
+    #[NoReturn]
     public function gotoShort(array $getParams) : void
     {
-        $shortUrl = $getParams["s"];
+        $shortUrl = $this->simpleTrim($getParams["s"]);
         $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
+        $this->mainManager->incrementCounter($shortUrl);
         header("Location: $getLongUrl", true, 302);
         exit();
     }
 
-    public function verifyForShort(array $getParams) : void
-    {
-        die(var_dump($getParams));
-        $shortUrl = $getParams["url"];
-        $getLongUrl = $this->mainManager->getLongUrl($shortUrl);
-        if(!$getLongUrl) {
-            header("Location: ./");
-        }
-    }
 
 }
